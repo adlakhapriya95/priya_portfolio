@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya Adlakha | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0a66c2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #0a66c2;
+        }
+
+        .nav-links .btn-resume {
+            background: #0a66c2;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links .btn-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 102, 194, 0.3);
+            background: #084d8f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 80px;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #0a66c2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #0a66c2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.3);
+            background: #084d8f;
+        }
+
+        .btn-secondary {
+            border: 2px solid #0a66c2;
+            color: #0a66c2;
+            background: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(10, 102, 194, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links a:hover {
+            color: #0a66c2;
+            transform: translateY(-2px);
+        }
+
+        .social-links i {
+            font-size: 1.2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: #0a66c2;
+            padding: 5px;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #0a66c2;
+        }
+
+        .about-text h3 {
+            color: #0a66c2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .education-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .education-card h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            color: #0a66c2;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-card .location {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #0a66c2;
+            box-shadow: 0 10px 30px rgba(10, 102, 194, 0.15);
+        }
+
+        .skill-card h3 {
+            color: #0a66c2;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-card p {
+            color: #4a5568;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #f7fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #0a66c2;
+            box-shadow: 0 10px 30px rgba(10, 102, 194, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: #0a66c2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #0a66c2;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(10, 102, 194, 0.1);
+            color: #0a66c2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(10, 102, 194, 0.2);
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            color: #0a66c2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-link:hover {
+            color: #084d8f;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #f7fafc;
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-info p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-links a:hover {
+            color: #0a66c2;
+            background: rgba(10, 102, 194, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .contact-links i {
+            font-size: 1.3rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #e2e8f0;
+            color: #4a5568;
+            background: #f7fafc;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .profile-img {
+                width: 300px;
+                height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Priya Adlakha</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#honors">Honors</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="resume/Priya_Adlakha_Resume.pdf" download class="btn-resume">Download Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div class="hero-content">
+                <h1>Hi, I'm Priya Adlakha</h1>
+                <p>Passionate about Product, always curious, and enjoy connecting with people.</p>
+                <div class="btn-group">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/adlakhapriya95" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/priya-adlakha-8a5a29106/" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:adlakhapriya95@gmail.com">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-img">
+                    <img src="images/profile.jpg" alt="Priya Adlakha">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; margin-bottom: 4rem;">
+                <div class="about-text">
+                    <h3>My Journey</h3>
+                    <p>I started my career straight out of college as a Research Associate with a degree in Economics. After a year, I realized research wasn't the right fit for me, so I began exploring different fields and courses, from finance to marketing, trying to find my true passion. During this exploration, I discovered Product Management and immediately knew it was the direction I wanted to pursue.</p>
+                    <p>I began in a UAT role to gain hands-on experience and understand how product teams operate. Within a year, I moved into an Associate Product Manager position and eventually took on the role of Product Manager, managing one team and later expanding to two teams, driving strategy, execution, and collaboration. Recognizing that the world of product and technology is constantly evolving, I enrolled in the MS-BAIM program at Purdue University to strengthen my technical skills and enhance my ability to build impactful, data-driven products.</p>
+                    
+                    <h3>My Philosophy</h3>
+                    <p>My philosophy is simple: if something scares you, jump in. Growth happens when you face challenges head-on, learn along the way, and embrace uncertainty. I believe action and curiosity are the best teachers.</p>
+                    
+                    <h3>When I Am Not Working</h3>
+                    <p>I'm a nature enthusiast and a lover of movement. You can usually find me exploring new places, hiking trails, enjoying a walk outdoors, or dancing to my favorite tunes.</p>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 100%; max-width: 350px; aspect-ratio: 1; background: #0a66c2; padding: 5px; border-radius: 12px;">
+                        <div style="width: 100%; height: 100%; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+                            <img src="images/priya-photo.jpg" alt="Priya Adlakha" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem;" id="honors">
+                <div>
+                    <h3 style="color: #0a66c2; margin-bottom: 1.5rem; font-size: 1.5rem;">Education</h3>
+                    
+                    <div class="education-card">
+                        <h4>Purdue University</h4>
+                        <div class="degree">MS, Business Analytics</div>
+                        <div class="location">Indiana, United States, Aug '25 - May '26</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <h4>Guru Gobind Singh Indraprastha University</h4>
+                        <div class="degree">MA, Economics</div>
+                        <div class="location">Delhi, India, Jul '16 - Sept '18</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <h4>Gargi College, University of Delhi</h4>
+                        <div class="degree">BA-Honors in Economics</div>
+                        <div class="location">Delhi, India, June '13 - June '16</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: #0a66c2; margin-bottom: 1.5rem; font-size: 1.5rem;">Honors & Achievements</h3>
+                    
+                    <div class="education-card">
+                        <h4>Purdue University, 2025–26</h4>
+                        <div class="degree">5th Place – Bankruptcy Prediction Challenge</div>
+                        <div class="location">Topped internal Kaggle-style competition focused on financial risk classification using machine learning.</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <h4>S&P Global Market Intelligence, 2020</h4>
+                        <div class="degree">Extra Mile Award</div>
+                        <div class="location">Received for Lean & Robotic Process Automation initiative.</div>
+                    </div>
+                    
+                    <div class="education-card" style="border: 2px solid rgba(10, 102, 194, 0.3);">
+                        <h4 style="color: #0a66c2;">Professional Certifications</h4>
+                        <ul style="color: #4a5568; line-height: 1.8; list-style-position: inside; margin-top: 0.5rem; font-size: 0.9rem;">
+                            <li>Tableau Data Analyst/Specialist Desktop</li>
+                            <li>Certified SAFe 5 Product Owner/Manager</li>
+                            <li>Certified SAFe 5 Practitioner</li>
+                            <li>Advanced SQL for Data Scientist</li>
+                            <li>Enterprise Design Thinking Practitioner</li>
+                            <li>AWS Cloud Practitioner</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <p style="text-align: center; color: #4a5568; margin-bottom: 2rem;">Technologies and competencies I work with</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🐍</div>
+                    <h3>Python</h3>
+                    <p>Pandas, NumPy for data manipulation and analysis</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🗃️</div>
+                    <h3>SQL</h3>
+                    <p>Database querying and data extraction</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+                    <h3>Data Visualization</h3>
+                    <p>Tableau, Power BI, Excel for insights and reporting</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📈</div>
+                    <h3>Data Analysis</h3>
+                    <p>Statistical analysis and insights generation</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧪</div>
+                    <h3>A/B Testing</h3>
+                    <p>Experimentation and hypothesis validation</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤖</div>
+                    <h3>Machine Learning</h3>
+                    <p>Predictive modeling and data science techniques</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛠️</div>
+                    <h3>Product Tools</h3>
+                    <p>Azure DevOps, Productboard, Miro, Databases</p>
+                </div>
+                <div class="skill-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+                    <h3>Cross-Team Collaboration</h3>
+                    <p>Stakeholder management and communication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background: none; padding: 0;">
+                        <img src="images/bankruptcy.jpg" alt="Bankruptcy Prediction" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Bankruptcy Prediction</h3>
+                        <p>This project predicts company bankruptcy using financial and operational data. Applying data mining principles and ensemble ML techniques, it achieved a high AUC score in a Kaggle competition, securing 5th place among global participants.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Data Mining</span>
+                            <span class="tag">Ensemble Methods</span>
+                        </div>
+                        <a href="https://github.com/adlakhapriya95/Bankruptcy-prediction" target="_blank" style="display: inline-block; margin-top: 1rem; color: #0a66c2; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: none; padding: 0;">
+                        <img src="images/venture-capital.jpg" alt="Venture Capital" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Venture Capital Market Intelligence</h3>
+                        <p>Analyzes startups to identify acquisition candidates using funding, revenue, growth, and valuation metrics. Includes EDA, visualizations, and ranking to provide actionable insights for venture capital investment decisions.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">EDA</span>
+                            <span class="tag">Business Intelligence</span>
+                        </div>
+                        <a href="https://github.com/adlakhapriya95/Venture-Capital-Market-Intelligence-Project" target="_blank" style="display: inline-block; margin-top: 1rem; color: #0a66c2; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: none; padding: 0;">
+                        <img src="images/twitter.jpg" alt="Twitter Analysis" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Twitter Analysis Project</h3>
+                        <p>Analyzes Twitter data to extract insights on user behavior, trending topics, and sentiment patterns. Using data cleaning, EDA, and visualizations to identify key trends, engagement metrics, and sentiment trends for social media strategy.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Sentiment Analysis</span>
+                            <span class="tag">Social Media Analytics</span>
+                            <span class="tag">Visualization</span>
+                        </div>
+                        <a href="https://github.com/adlakhapriya95/Twitter-Analysis-Project" target="_blank" style="display: inline-block; margin-top: 1rem; color: #0a66c2; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: none; padding: 0;">
+                        <img src="images/wine.jpg" alt="Wine Analysis" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Semantic Analysis on Wine Data</h3>
+                        <p>Performs semantic analysis on wine reviews and descriptions, using MongoDB for data storage and NLP techniques like tokenization, word embeddings, and clustering to uncover patterns in flavor profiles and consumer perceptions.</p>
+                        <div class="project-tags">
+                            <span class="tag">NLP</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Clustering</span>
+                            <span class="tag">Text Analysis</span>
+                        </div>
+                        <a href="https://github.com/adlakhapriya95/Semantic-Analysis-on-Wine-Data" target="_blank" style="display: inline-block; margin-top: 1rem; color: #0a66c2; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: none; padding: 0;">
+                        <img src="images/netflix.jpg" alt="Netflix Analysis" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Netflix Data Analysis</h3>
+                        <p>Performs a detailed analysis of Netflix's content data, exploring trends in movies and TV shows, release patterns, content types, genres, and regional distributions to uncover insights about Netflix's catalogue and viewing trends.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">Visualization</span>
+                            <span class="tag">EDA</span>
+                        </div>
+                        <a href="https://github.com/adlakhapriya95/Netflix-Data-Analysis" target="_blank" style="display: inline-block; margin-top: 1rem; color: #0a66c2; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://github.com/adlakhapriya95" target="_blank" class="github-link">
+                <i class="fab fa-github" style="font-size: 1.5rem;"></i>
+                View All Projects on GitHub
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p>Feel free to reach out for collaborations or just a friendly hello! I'm currently looking for new opportunities to work on exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:adlakhapriya95@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                        adlakhapriya95@gmail.com
+                    </a>
+                    <a href="tel:+16283039100">
+                        <i class="fas fa-phone"></i>
+                        +1 (628) 303 9100
+                    </a>
+                    <a href="https://www.linkedin.com/in/priya-adlakha-8a5a29106/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/adlakhapriya95" target="_blank">
+                        <i class="fab fa-github"></i>
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Priya Adlakha. All rights reserved.</p>
+        <div class="social-links"
