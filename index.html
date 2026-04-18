@@ -326,7 +326,7 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; color
         <div class="education-card">
           <h4>S&amp;P Global Market Intelligence, 2020</h4>
           <div class="degree">Extra Mile Award</div>
-          <div class="location">Received for Lean &amp; Robotic Process Automation initiative.</div>
+          <div class="location">Received for Lean &amp; Robotic Process Automation initiative, and drove org-wide adoption, reducing manual training effort by 70%.</div>
         </div>
         <div class="education-card" style="border: 2px solid rgba(10,102,194,0.3);">
           <h4 style="color:#0a66c2;">Professional Certifications</h4>
@@ -374,22 +374,22 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; color
 const PROJECT_META = {
   "Bankruptcy-prediction": {
     description: "Predicts company bankruptcy using financial and operational data. Applies data mining principles and ensemble ML techniques, achieving a high AUC score in a Kaggle competition — 5th place among global participants.",
-    tags: ["Python", "Machine Learning", "Data Mining", "Ensemble", "Prediction Model", "Feature Engineering"],
+    tags: ["Python", "Machine Learning", "Data Mining", "Ensemble Methods"],
     image: "images/bankruptcy.jpg", emoji: "📉"
   },
   "Ticketflow-System-Design-Working-Model": {
     description: "End-to-end prototype of a Ticketmaster-style booking system — seat reservation, concurrent booking with distributed locking, event discovery API, and queue management for high-traffic scenarios.",
-    tags: ["System Design", "Node.js", "HTML", "Distributed Systems", "Prototyping", "Frontend-Backend Integration"],
+    tags: ["System Design", "Node.js", "HTML", "Distributed Systems"],
     image: "images/ticketmaster1.jpeg", emoji: "🎟️"
   },
   "Olist-E-commerce-Analysis": {
     description: "E-commerce data analysis using SQL to explore revenue trends, AOV, order performance, payments, delivery timelines, and customer reviews — deriving actionable business insights.",
-    tags: ["SQL", "Python", "EDA", "Business Intelligence", "Data Analysis"],
+    tags: ["SQL", "Python", "EDA", "Business Intelligence"],
     image: "images/olist2.jpeg", emoji: "🛒"
   },
   "Venture-Capital-Market-Intelligence-Project": {
     description: "Analyzes startups to identify acquisition candidates using funding, revenue, growth, and valuation metrics. Includes EDA, visualizations, and ranking for venture capital investment decisions.",
-    tags: ["NoSQL", "Data Analysis", "EDA", "MongoDB", "Market Intelligence"],
+    tags: ["Python", "Data Analysis", "EDA", "Business Intelligence"],
     image: "images/venture-capital.jpg", emoji: "💼"
   },
   "Twitter-Analysis-Project": {
@@ -398,23 +398,28 @@ const PROJECT_META = {
     image: "images/twitter.jpg", emoji: "🐦"
   },
   "Semantic-Analysis-on-Wine-Data": {
-    description: "Semantic analysis on wine reviews using MongoDB and NLP techniques using tokenization, word embeddings, and clustering to uncover patterns in flavor profiles and consumer perceptions.",
+    description: "Semantic analysis on wine reviews using MongoDB and NLP techniques — tokenization, word embeddings, and clustering to uncover patterns in flavor profiles and consumer perceptions.",
     tags: ["NLP", "MongoDB", "Clustering", "Text Analysis"],
-    image: "images/wine.jpeg", emoji: "🍷"
+    image: "images/wine.jpg", emoji: "🍷"
   },
   "Netflix-Data-Analysis": {
-    description: "Detailed analysis of Netflix's content data - exploring trends in movies and TV shows, release patterns, genres, and regional distributions to uncover catalogue insights.",
+    description: "Detailed analysis of Netflix's content data — exploring trends in movies and TV shows, release patterns, genres, and regional distributions to uncover catalogue insights.",
     tags: ["Python", "Data Analysis", "Visualization", "EDA"],
-    image: "images/netflix.jpeg", emoji: "🎬"
+    image: "images/netflix.jpg", emoji: "🎬"
   },
-  "LLM Fine Tuning Using DPO": {
-    description: "Fine-tuned a pretrained LLM using Direct Preference Optimization (DPO) on custom preference data to align outputs toward persuasive, campaign-style communication.",
-    tags: ["LLM", "Fine-tuning", "NLP", "Python", "DPO"],
+  "LLM-Fine-Tuning": {
+    description: "LLM fine-tuning and application project exploring large language model capabilities for downstream tasks.",
+    tags: ["LLM", "Fine-tuning", "NLP", "Python"],
+    image: "images/LLM.jpeg", emoji: "🤖"
+  },
+  "LLM": {
+    description: "LLM fine-tuning and application project exploring large language model capabilities for downstream tasks.",
+    tags: ["LLM", "Fine-tuning", "NLP", "Python"],
     image: "images/LLM.jpeg", emoji: "🤖"
   },
   "Big-Data-MLOPs-Project": {
     description: "End-to-end MLOps pipeline covering data ingestion, model training, deployment, and monitoring at scale.",
-    tags: ["MLOps", "PySpark", "Docker", "CI/CD", "Big Data", "DataBricks"],
+    tags: ["MLOps", "Python", "Docker", "CI/CD"],
     image: "images/MLData.jpeg", emoji: "⚙️"
   }
 };
@@ -423,12 +428,12 @@ const SKIP_REPOS = ["priya_portfolio"];
 
 // Repos shown with full curated info — used for fallback order too
 const CURATED_ORDER = [
-  "Ticketflow-System-Design-Working-Model",
   "Bankruptcy-prediction",
-  "Semantic-Analysis-on-Wine-Data",
-  "Venture-Capital-Market-Intelligence-Project",
   "Olist-E-commerce-Analysis",
+  "Ticketflow-System-Design-Working-Model",
+  "Venture-Capital-Market-Intelligence-Project",
   "Twitter-Analysis-Project",
+  "Semantic-Analysis-on-Wine-Data",
   "Netflix-Data-Analysis"
 ];
 
