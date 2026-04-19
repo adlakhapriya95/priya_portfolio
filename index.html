@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,7 +212,7 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; color
 <section id="skills">
   <div class="container">
     <h2>My Skills</h2>
-    <p style="text-align:center;color:#4a5568;margin-bottom:2rem;">Technologies and competencies I work with</p>
+
     <div class="skills-3col">
 
       <div class="skill-col">
@@ -370,61 +369,99 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; color
 </footer>
 
 <script>
-// ─── Curated metadata for known repos ────────────────────────────────────────
-const PROJECT_META = {
-  "Bankruptcy-prediction-With-ML-Models": {
-    description: "This project predicts company bankruptcy using financial and operational data. Applying data mining principles and ensemble ML techniques, it achieved a high AUC score in a Kaggle competition, securing 5th place among global participants.",
-    tags: ["Python", "Machine Learning", "Data Mining", "Ensemble", "Prediction Model", "Feature Engineering"],
-    image: "images/bankruptcy.jpg", emoji: "📉"
-  },
+// ─── IMAGE MAP ─────────────────────────────────────────────────────────────
+const REPO_IMAGES = {
+  "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs": "images/unstructured.jpeg",
+  "Unstructured-to-Structured-Executive-Data-Intelligence-Using-APIs": "images/unstructured.jpeg",
+  "unstructured-to-structured-executive-data-intelligence-using-apis": "images/unstructured.jpeg",
+  "Unstructured-To-Structured-Executive-Data-Intelligence-using-APIs": "images/unstructured.jpeg",
+  "LLM-Fine-Tuning-Using-DPO":            "images/LLM.jpeg",
+  "LLM-Fine-Tuning-using-DPO":            "images/LLM.jpeg",
+  "Ticketflow-System-Design-Working-Model":"images/ticketmaster1.jpeg",
+  "Bankruptcy-prediction-with-ML-models": "images/bankruptcy.jpg",
+  "Big-Data-MLOPs-Project":               "images/MLData.jpeg",
+  "Venture-Capital-Market-Intelligence-Project": "images/venture-capital.jpg",
+  "Semantic-Analysis-on-Wine-Data":       "images/wine.jpg",
+  "Olist-E-commerce-Analysis":            "images/olist2.jpeg",
+  "Twitter-Analysis-Project":             "images/twitter.jpg",
+  "Netflix-Data-Analysis":                "images/netflix.jpg"
+};
+
+// ─── CUSTOM LINK OVERRIDES ─────────────────────────────────────────────────
+// linkedinUrl: shown as extra "View on LinkedIn" button alongside the GitHub link
+const REPO_LINKS = {
   "Ticketflow-System-Design-Working-Model": {
-    description: "TicketFlow is a locally built, end-to-end prototype of a Ticketmaster-style booking system designed to translate system design concepts into a working model. The goal of this project was to build a production-ready application and to understand how real-world systems behave by implementing them from frontend interactions to backend logic.",
-    tags: ["Node.js", "HTML", "Distributed System Design", "API", "Prototyping", "Frontend-Backend Integration"],
-    image: "images/ticketmaster1.jpeg", emoji: "🎟️"
-  },
-  "Olist-E-commerce-Analysis": {
-    description: "E-commerce data analysis using SQL to explore revenue trends, AOV, order performance, payments, delivery timelines, and customer reviews — deriving actionable business insights.",
-    tags: ["SQL", "Python", "EDA", "Business Intelligence"],
-    image: "images/olist2.jpeg", emoji: "🛒"
-  },
-  "Venture-Capital-Market-Intelligence-Project": {
-    description: "Analyzes startups to identify acquisition candidates using funding, revenue, growth, and valuation metrics. Includes EDA, visualizations, and ranking for venture capital investment decisions.",
-    tags: ["Python", "Data Analysis", "EDA", "NoSQL", "MongoDB", "Market Intelligence"],
-    image: "images/venture-capital.jpg", emoji: "💼"
-  },
-  "Twitter-Analysis-Project": {
-    description: "Analyzes Twitter data to extract insights on user behavior, trending topics, and sentiment patterns using data cleaning, EDA, and visualizations for social media strategy.",
-    tags: ["Python", "Sentiment Analysis", "Social Media Analytics", "Visualization"],
-    image: "images/twitter.jpg", emoji: "🐦"
-  },
-  "Semantic-Analysis-on-Wine-Data": {
-    description: "Performed large-scale semantic analysis on ~130K wine reviews to extract key descriptors and uncover patterns influencing wine ratings and quality.",
-    tags: ["Semantic Analysis", "MongoDB", "Clustering", "Text Analysis"],
-    image: "images/wine.jpeg", emoji: "🍷"
-  },
-  "Netflix-Data-Analysis": {
-    description: "Detailed analysis of Netflix's content data — exploring trends in movies and TV shows, release patterns, genres, and regional distributions to uncover catalogue insights.",
-    tags: ["Python", "Data Analysis", "Visualization", "EDA"],
-    image: "images/netflix1.jpg", emoji: "🎬"
-  },
-  "LLM-Fine-Tuning-Using-DPO": {
-    description: "Fine-tuned a pretrained LLM using Direct Preference Optimization (DPO) on custom preference data to align outputs toward persuasive, campaign-style communication.",
-    tags: ["LLM", "Fine-tuning", "NLP", "Python", "DPO", "Transformer"],
-    image: "images/LLM.jpeg", emoji: "🤖"
-  },
-  "Big-Data-MLOPs-Project": {
-    description: "End-to-end MLOps pipeline covering data ingestion, model training, deployment, and monitoring at scale.",
-    tags: ["MLOps", "Python", "Docker", "CI/CD", "DataBricks", "Big Data"],
-    image: "images/MLData.jpeg", emoji: "⚙️"
+    linkedin: "https://www.linkedin.com/feed/update/urn:li:activity:7448463644528443392/?originTrackingId=IifLjbEsLGEPR%2BO9vRDp2w%3D%3D"
   }
 };
 
-const SKIP_REPOS = ["priya_portfolio"];
+// ─── CUSTOM TAG OVERRIDES ──────────────────────────────────────────────────
+// Tags here are MERGED with auto-extracted README tags (no duplicates).
+// Set removeLanguageTag: true to drop the primary language tag.
+const REPO_TAG_OVERRIDES = {
+  "Bankruptcy-prediction-with-ML-models": {
+    add: ["Python", "ML Models", "Prediction", "Ensemble", "Feature Engineering", "Decision Tree"],
+    removeLanguageTag: true
+  },
+  "Big-Data-MLOPs-Project": {
+    add: ["Big Data", "PySpark", "Databricks", "Data Pipelines"],
+    removeLanguageTag: false
+  },
+  "Ticketflow-System-Design-Working-Model": {
+    add: ["Frontend-Backend Integration", "System Design", "API", "JSON"],
+    remove: ["Backend"],
+    removeLanguageTag: false
+  },
+  "Twitter-Analysis-Project": {
+    add: ["Python", "Sentiment Analysis", "Social Media Analytics", "Visualization"],
+    removeLanguageTag: false
+  },
+  "Olist-E-commerce-Analysis": {
+    add: ["SQL", "Python", "EDA", "Business Intelligence"],
+    removeLanguageTag: false
+  },
+  "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs": {
+    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    removeLanguageTag: false
+  },
+  "Unstructured-to-Structured-Executive-Data-Intelligence-Using-APIs": {
+    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    removeLanguageTag: false
+  },
+  "unstructured-to-structured-executive-data-intelligence-using-apis": {
+    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    removeLanguageTag: false
+  },
+  "Unstructured-To-Structured-Executive-Data-Intelligence-using-APIs": {
+    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    removeLanguageTag: false
+  },
+  "Semantic-Analysis-on-Wine-Data": {
+    add: ["Semantic Analysis", "MongoDB", "Clustering", "Text Analysis"],
+    removeLanguageTag: false
+  },
+  "Venture-Capital-Market-Intelligence-Project": {
+    add: ["Python", "Data Analysis", "EDA", "NoSQL", "MongoDB", "Market Intelligence"],
+    removeLanguageTag: false
+  },
+  "Netflix-Data-Analysis": {
+    add: ["Trend Analysis", "Python", "Data Analysis", "Visualization", "EDA"],
+    removeLanguageTag: false
+  }
+};
 
-// Repos shown with full curated info — used for fallback order too
+// ─── DISPLAY ORDER ─────────────────────────────────────────────────────────
+// New repos not listed here float to the TOP automatically.
 const CURATED_ORDER = [
+  "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs",
+  "Unstructured-to-Structured-Executive-Data-Intelligence-Using-APIs",
+  "unstructured-to-structured-executive-data-intelligence-using-apis",
+  "Unstructured-To-Structured-Executive-Data-Intelligence-using-APIs",
+  "LLM-Fine-Tuning-Using-DPO",
+  "LLM-Fine-Tuning-using-DPO",
   "Ticketflow-System-Design-Working-Model",
-  "Bankruptcy-prediction",
+  "Bankruptcy-prediction-with-ML-models",
+  "Big-Data-MLOPs-Project",
   "Venture-Capital-Market-Intelligence-Project",
   "Semantic-Analysis-on-Wine-Data",
   "Olist-E-commerce-Analysis",
@@ -432,82 +469,137 @@ const CURATED_ORDER = [
   "Netflix-Data-Analysis"
 ];
 
-// Language → emoji for new repos
+const SKIP_REPOS = ["priya_portfolio"];
+
 function langEmoji(lang) {
   return { Python:"🐍", JavaScript:"🌐", HTML:"🌐", "Jupyter Notebook":"📓", SQL:"🗃️" }[lang] || "💻";
 }
 
-// Parse README/description for tech tags
-// Looks for known tech keywords anywhere in the text
 function extractTagsFromText(text) {
   if (!text) return [];
   const keywords = [
+    "Frontend-Backend Integration","Frontend Backend Integration",
+    "Machine Learning","Deep Learning","Neural Network","Transfer Learning",
+    "Data Mining","Ensemble Methods","Predictive Modeling","Prediction Models",
+    "Time-series Analysis","Time Series","Forecasting","Clustering","Classification",
+    "Sentiment Analysis","Text Analysis","NLP","BERT","RAG","LLM","Fine-tuning",
+    "LangChain","Transformers","Hugging Face","OpenAI","DPO","RLHF",
+    "EDA","Business Intelligence","Data Analysis","Data Visualization","Visualization",
+    "Social Media Analytics","Unstructured Data","API","JSON",
+    "Big Data","PySpark","Databricks","Data Pipelines","MLOps",
     "Python","SQL","BigQuery","MongoDB","PostgreSQL","MySQL","SQLite",
     "Pandas","NumPy","Scikit-learn","XGBoost","LightGBM","TensorFlow","PyTorch",
-    "Transformers","LangChain","OpenAI","LLM","NLP","BERT","RAG",
-    "Tableau","Power BI","Matplotlib","Seaborn","Plotly",
-    "Docker","Kubernetes","AWS","Azure","GCP","FastAPI","Flask","Node.js",
-    "React","HTML","CSS","JavaScript","TypeScript",
-    "Machine Learning","Deep Learning","Neural Network",
-    "EDA","A/B Testing","Forecasting","Clustering","Classification",
+    "Matplotlib","Seaborn","Plotly","Tableau","Power BI",
+    "System Design","Distributed Systems","Node.js",
+    "Docker","Kubernetes","AWS","Azure","GCP","FastAPI","Flask",
+    "React","JavaScript","TypeScript",
     "Git","CI/CD","MLflow","Airflow","Spark","Kafka"
+    // Note: "Backend" intentionally omitted so Ticketflow removal works cleanly
+    // Note: "Jupyter Notebook" intentionally omitted — never shown as a tag
   ];
   const found = [];
   const lower = text.toLowerCase();
   for (const kw of keywords) {
-    if (lower.includes(kw.toLowerCase()) && !found.includes(kw)) found.push(kw);
-    if (found.length >= 5) break;
+    if (lower.includes(kw.toLowerCase()) && !found.includes(kw)) {
+      found.push(kw);
+    }
+    if (found.length >= 6) break;
   }
   return found;
 }
 
-function buildCard(repo, tags) {
-  const meta = PROJECT_META[repo.name] || {};
-  const desc = meta.description || repo.description || "No description provided.";
-  const cardTags = meta.tags || tags || (repo.language ? [repo.language] : []);
-  const emoji = meta.emoji || langEmoji(repo.language);
-  const imgHTML = meta.image
-    ? `<img src="${meta.image}" alt="${repo.name}" style="width:100%;height:100%;object-fit:cover;">`
-    : `<span style="font-size:3.5rem;">${emoji}</span>`;
-  const title = repo.name.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-  const tagsHTML = cardTags.map(t => `<span class="tag">${t}</span>`).join("");
-  return `
-    <div class="project-card">
-      <div class="project-image" style="${meta.image ? 'background:none;padding:0;' : ''}">${imgHTML}</div>
-      <div class="project-content">
-        <h3>${title}</h3>
-        <p>${desc}</p>
-        <div class="project-tags">${tagsHTML}</div>
-        <a href="${repo.html_url}" target="_blank" style="display:inline-block;margin-top:1rem;color:#0a66c2;text-decoration:none;font-weight:600;">
-          <i class="fab fa-github"></i> View on GitHub
-        </a>
-      </div>
-    </div>`;
-}
-
 async function fetchReadmeTags(repoName) {
   try {
-    const res = await fetch(`https://api.github.com/repos/adlakhapriya95/${repoName}/readme`, {
-      headers: { Accept: "application/vnd.github.raw" }
-    });
+    const res = await fetch(
+      `https://api.github.com/repos/adlakhapriya95/${repoName}/readme`,
+      { headers: { Accept: "application/vnd.github.raw" } }
+    );
     if (!res.ok) return [];
     const text = await res.text();
     return extractTagsFromText(text);
   } catch { return []; }
 }
 
+function applyTagOverrides(repoName, baseTags, language) {
+  const override = REPO_TAG_OVERRIDES[repoName];
+  let tags = [...baseTags];
+
+  // Remove primary language tag if requested
+  if (override && override.removeLanguageTag && language) {
+    tags = tags.filter(t => t !== language && t !== "Jupyter Notebook");
+  }
+  // Always strip "Jupyter Notebook" globally
+  tags = tags.filter(t => t !== "Jupyter Notebook");
+
+  if (!override) return tags;
+
+  // Remove specific tags
+  if (override.remove) {
+    tags = tags.filter(t => !override.remove.includes(t));
+  }
+  // Add tags (no duplicates)
+  if (override.add) {
+    for (const t of override.add) {
+      if (!tags.includes(t)) tags.push(t);
+    }
+  }
+  return tags;
+}
+
+function buildCard(repo, readmeTags) {
+  const image = REPO_IMAGES[repo.name] || null;
+  const emoji = langEmoji(repo.language);
+  const desc = repo.description || "No description provided.";
+  const extraLink = REPO_LINKS[repo.name] ? REPO_LINKS[repo.name].linkedin : null;
+
+  // Base tags: GitHub topics → README-extracted → language fallback
+  let baseTags = (repo.topics && repo.topics.length > 0)
+    ? repo.topics
+    : (readmeTags && readmeTags.length > 0)
+      ? readmeTags
+      : (repo.language ? [repo.language] : []);
+
+  const cardTags = applyTagOverrides(repo.name, baseTags, repo.language);
+
+  const imgHTML = image
+    ? `<img src="${image}" alt="${repo.name}" style="width:100%;height:100%;object-fit:cover;">`
+    : `<span style="font-size:3.5rem;">${emoji}</span>`;
+  const title = repo.name.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  const tagsHTML = cardTags.map(t => `<span class="tag">${t}</span>`).join("");
+  return `
+    <div class="project-card">
+      <div class="project-image" style="${image ? 'background:none;padding:0;' : ''}">${imgHTML}</div>
+      <div class="project-content">
+        <h3>${title}</h3>
+        <p>${desc}</p>
+        <div class="project-tags">${tagsHTML}</div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+          <a href="${repo.html_url}" target="_blank"
+             style="color:#0a66c2;text-decoration:none;font-weight:600;">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>${extraLink ? `
+          <a href="${extraLink}" target="_blank"
+             style="color:#0a66c2;text-decoration:none;font-weight:600;">
+            <i class="fab fa-linkedin"></i> View on LinkedIn
+          </a>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
 async function loadProjects() {
   const container = document.getElementById("projects-container");
   try {
-    const res = await fetch("https://api.github.com/users/adlakhapriya95/repos?per_page=50&sort=updated");
+    const res = await fetch(
+      "https://api.github.com/users/adlakhapriya95/repos?per_page=50&sort=updated",
+      { headers: { Accept: "application/vnd.github.mercy-preview+json" } }
+    );
     if (!res.ok) throw new Error("API error");
     const repos = await res.json();
 
-    // Filter out skipped repos and forks
     const filtered = repos.filter(r => !SKIP_REPOS.includes(r.name) && !r.fork);
 
-    // Sort: newest (most recently pushed) repos that are NOT in CURATED_ORDER come first,
-    // then curated ones in their defined order, then any others
+    // New repos float to the top
     const newRepos = filtered
       .filter(r => !CURATED_ORDER.includes(r.name))
       .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
@@ -518,26 +610,21 @@ async function loadProjects() {
 
     const sorted = [...newRepos, ...curatedRepos];
 
-    // For new repos (not in PROJECT_META), try to auto-extract tags from README
-    const tagPromises = sorted.map(async repo => {
-      if (PROJECT_META[repo.name]) return null; // already have curated tags
-      const tags = await fetchReadmeTags(repo.name);
-      return tags.length ? tags : (repo.language ? [repo.language] : []);
-    });
-
-    const allTags = await Promise.all(tagPromises);
+    const allReadmeTags = await Promise.all(
+      sorted.map(repo => fetchReadmeTags(repo.name))
+    );
 
     container.innerHTML = sorted.length
-      ? `<div class="projects-grid">${sorted.map((r, i) => buildCard(r, allTags[i])).join("")}</div>`
+      ? `<div class="projects-grid">${sorted.map((r, i) => buildCard(r, allReadmeTags[i])).join("")}</div>`
       : `<p style="text-align:center;color:#718096;">No public repositories found.</p>`;
 
   } catch (e) {
-    // Graceful fallback
     const fallback = CURATED_ORDER.map(name => ({
-      name, html_url: `https://github.com/adlakhapriya95/${name}`,
-      language: null, description: null, fork: false
+      name,
+      html_url: `https://github.com/adlakhapriya95/${name}`,
+      description: null, language: null, fork: false, topics: []
     }));
-    container.innerHTML = `<div class="projects-grid">${fallback.map(r => buildCard(r, null)).join("")}</div>`;
+    container.innerHTML = `<div class="projects-grid">${fallback.map(r => buildCard(r, [])).join("")}</div>`;
   }
 }
 
