@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -378,10 +379,10 @@ const REPO_IMAGES = {
   "Bankruptcy-prediction-with-ML-models": "images/bankruptcy.jpg",
   "Big-Data-MLOPs-Project":               "images/MLData.jpeg",
   "Venture-Capital-Market-Intelligence-Project": "images/venture-capital.jpg",
-  "Semantic-Analysis-on-Wine-Data":       "images/wine.jpg",
+  "Semantic-Analysis-on-Wine-Data":       "images/wine.jpeg",
   "Olist-E-commerce-Analysis":            "images/olist2.jpeg",
   "Twitter-Analysis-Project":             "images/twitter.jpg",
-  "Netflix-Data-Analysis":                "images/netflix.jpg"
+  "Netflix-Data-Analysis":                "images/netflix1.jpeg"
 };
 
 // ─── CUSTOM LINK OVERRIDES ─────────────────────────────────────────────────
@@ -418,23 +419,25 @@ const REPO_TAG_OVERRIDES = {
     removeLanguageTag: false
   },
   "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs": {
-    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    add: ["Data Scraping", "SEC EDGAR", "LLM Integration", "Streamlit", "FinTech", "API Development", "Hallucination Guards", "Investment Research", "Gen AI"],
     removeLanguageTag: false
   },
   "Unstructured-to-Structured-Executive-Data-Intelligence-Using-APIs": {
-    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    add: ["Data Scraping", "SEC EDGAR", "LLM Integration", "Streamlit", "FinTech", "API Development", "Hallucination Guards", "Investment Research", "Gen AI"],
     removeLanguageTag: false
   },
   "unstructured-to-structured-executive-data-intelligence-using-apis": {
-    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    add: ["Data Scraping", "SEC EDGAR", "LLM Integration", "Streamlit", "FinTech", "API Development", "Hallucination Guards", "Investment Research", "Gen AI"],
     removeLanguageTag: false
   },
   "Unstructured-To-Structured-Executive-Data-Intelligence-using-APIs": {
-    add: ["API Integration", "Scraping", "Unstructured Data", "Transcript + audio/video processing", "Gen AI"],
+    add: ["Data Scraping", "SEC EDGAR", "LLM Integration", "Streamlit", "FinTech", "API Development", "Hallucination Guards", "Investment Research", "Gen AI"],
     removeLanguageTag: false
   },
-  "Semantic-Analysis-on-Wine-Data": {
-    add: ["Semantic Analysis", "MongoDB", "Clustering", "Text Analysis"],
+  "LLM-Fine-Tuning-Using-DPO": {
+    add: ["DPO", "RLHF", "HuggingFace", "Fine-Tuning", "LLM", "Model Alignment", "Python"],
+    removeLanguageTag: false
+  },
     removeLanguageTag: false
   },
   "Venture-Capital-Market-Intelligence-Project": {
@@ -544,6 +547,9 @@ function buildCard(repo, readmeTags) {
   const emoji = langEmoji(repo.language);
   const desc = repo.description || "No description provided.";
   const extraLink = REPO_LINKS[repo.name] ? REPO_LINKS[repo.name].linkedin : null;
+  const prdLink = repo.name.toLowerCase().includes("unstructured-to-structured-executive")
+    ? "https://github.com/adlakhapriya95/Unstructured-to-Structured-Executive-Data-Intelligence-using-APIs/blob/main/Equity_Intelligence_PRD_v2%20(1).docx"
+    : null;
 
   // Base tags: GitHub topics → README-extracted → language fallback
   let baseTags = (repo.topics && repo.topics.length > 0)
@@ -574,6 +580,10 @@ function buildCard(repo, readmeTags) {
           <a href="${extraLink}" target="_blank"
              style="color:#0a66c2;text-decoration:none;font-weight:600;">
             <i class="fab fa-linkedin"></i> View on LinkedIn
+          </a>` : ''}${prdLink ? `
+          <a href="${prdLink}" target="_blank"
+             style="color:#0a66c2;text-decoration:none;font-weight:600;">
+            <i class="fas fa-file-alt"></i> PRD
           </a>` : ''}
         </div>
       </div>
