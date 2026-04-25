@@ -374,7 +374,12 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; color
 // ─── IMAGE MAP ─────────────────────────────────────────────────────────────
 const REPO_IMAGES = {
   "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs": "images/unstructured.jpeg",
+  "Unstructured-to-Structured-Executive-Data-Intelligence-using-APIs": "images/unstructured.jpeg",
+  "unstructured-to-structured-executive-data-intelligence-using-apis": "images/unstructured.jpeg",
+  "Unstructured-To-Structured-Executive-Data-Intelligence-using-APIs": "images/unstructured.jpeg",
   "LLM-Fine-Tuning-Using-DPO":            "images/LLM.jpeg",
+  "LLM-fine-tuning-using-DPO":            "images/LLM.jpeg",
+  "llm-fine-tuning-using-dpo":            "images/LLM.jpeg",
   "Ticketflow-System-Design-Working-Model":"images/ticketmaster1.jpeg",
   "Bankruptcy-prediction-with-ML-models": "images/bankruptcy.jpg",
   "Big-Data-MLOPs-Project":               "images/MLData.jpeg",
@@ -438,14 +443,16 @@ const REPO_TAG_OVERRIDES = {
     add: ["DPO", "RLHF", "HuggingFace", "Fine-Tuning", "LLM", "Model Alignment", "Python"],
     removeLanguageTag: false
   },
-    removeLanguageTag: false
-  },
   "Venture-Capital-Market-Intelligence-Project": {
     add: ["Python", "Data Analysis", "EDA", "NoSQL", "MongoDB", "Market Intelligence"],
     removeLanguageTag: false
   },
   "Netflix-Data-Analysis": {
     add: ["Trend Analysis", "Python", "Data Analysis", "Visualization", "EDA"],
+    removeLanguageTag: false
+  },
+  "Semantic-Analysis-on-Wine-Data": {
+    add: ["NLP", "MongoDB", "Clustering", "Text Analysis", "Semantic Analysis", "Word Embeddings"],
     removeLanguageTag: false
   }
 };
@@ -543,10 +550,20 @@ function applyTagOverrides(repoName, baseTags, language) {
 }
 
 function buildCard(repo, readmeTags) {
-  const image = REPO_IMAGES[repo.name] || null;
+  // Case-insensitive image lookup — GitHub repo names vary in capitalisation
+  const imageKey = Object.keys(REPO_IMAGES).find(
+    k => k.toLowerCase() === repo.name.toLowerCase()
+  );
+  const image = imageKey ? REPO_IMAGES[imageKey] : null;
+
+  // Case-insensitive tag override lookup
+  const overrideKey = Object.keys(REPO_TAG_OVERRIDES).find(
+    k => k.toLowerCase() === repo.name.toLowerCase()
+  );
   const emoji = langEmoji(repo.language);
   const desc = repo.description || "No description provided.";
-  const extraLink = REPO_LINKS[repo.name] ? REPO_LINKS[repo.name].linkedin : null;
+  const linksKey = Object.keys(REPO_LINKS).find(k => k.toLowerCase() === repo.name.toLowerCase());
+  const extraLink = linksKey ? REPO_LINKS[linksKey].linkedin : null;
   const prdLink = repo.name.toLowerCase().includes("unstructured-to-structured-executive")
     ? "https://github.com/adlakhapriya95/Unstructured-to-Structured-Executive-Data-Intelligence-using-APIs/blob/main/Equity_Intelligence_PRD_v2%20(1).docx"
     : null;
@@ -558,7 +575,7 @@ function buildCard(repo, readmeTags) {
       ? readmeTags
       : (repo.language ? [repo.language] : []);
 
-  const cardTags = applyTagOverrides(repo.name, baseTags, repo.language);
+  const cardTags = applyTagOverrides(overrideKey || repo.name, baseTags, repo.language);
 
   const imgHTML = image
     ? `<img src="${image}" alt="${repo.name}" style="width:100%;height:100%;object-fit:cover;">`
@@ -590,19 +607,64 @@ function buildCard(repo, readmeTags) {
     </div>`;
 }
 
+// ─── HARDCODED DESCRIPTIONS (shown when GitHub API is rate-limited) ──────────
+const REPO_DESCRIPTIONS = {
+  "Unstructured-To-Structured-Executive-Data-Intelligence-Using-APIs":
+    "An end-to-end investment research tool that transforms unstructured financial data — SEC 10-K filings, Yahoo Finance metrics, insider transactions, and news feeds — into structured institutional-grade investment memos using a multi-provider LLM pipeline with hallucination guards and a 7-pillar composite scorecard.",
+  "LLM-Fine-Tuning-Using-DPO":
+    "Fine-tunes a large language model using Direct Preference Optimization (DPO), aligning model outputs with human preferences without a separate reward model. Covers preference dataset construction, DPO trainer configuration with HuggingFace TRL, and before/after evaluation of response quality.",
+  "Ticketflow-System-Design-Working-Model":
+    "A full-stack system design working model for a ticket booking platform, covering backend API design, frontend integration, and data flow architecture.",
+  "Bankruptcy-prediction-with-ML-models":
+    "Predicts company bankruptcy using financial and operational data. Applying ensemble ML techniques, it achieved a high AUC score in a Kaggle-style competition, securing 5th place among global participants.",
+  "Big-Data-MLOPs-Project":
+    "End-to-end MLOps pipeline using PySpark and Databricks for large-scale data processing, model training, and deployment automation.",
+  "Venture-Capital-Market-Intelligence-Project":
+    "Analyzes startups to identify acquisition candidates using funding, revenue, growth, and valuation metrics. Includes EDA, visualizations, and ranking for actionable VC investment insights.",
+  "Semantic-Analysis-on-Wine-Data":
+    "Performs semantic analysis on wine reviews using MongoDB for data storage and NLP techniques including tokenization, word embeddings, and clustering to uncover patterns in flavor profiles and consumer perceptions.",
+  "Olist-E-commerce-Analysis":
+    "Comprehensive analysis of a Brazilian e-commerce dataset covering customer behavior, seller performance, delivery patterns, and revenue trends using SQL and Python.",
+  "Twitter-Analysis-Project":
+    "Analyzes Twitter data to extract insights on user behavior, trending topics, and sentiment patterns using EDA and visualizations.",
+  "Netflix-Data-Analysis":
+    "Detailed analysis of Netflix content data exploring trends in movies and TV shows, release patterns, genres, and regional distributions."
+};
+
 async function loadProjects() {
   const container = document.getElementById("projects-container");
+
+  // Show fallback immediately so page never spins for long
+  function showFallback() {
+    const fallback = CURATED_ORDER.map(name => ({
+      name,
+      html_url: `https://github.com/adlakhapriya95/${name}`,
+      description: REPO_DESCRIPTIONS[name] || null,
+      language: "Python", fork: false, topics: []
+    }));
+    container.innerHTML = `<div class="projects-grid">${fallback.map(r => buildCard(r, [])).join("")}</div>`;
+  }
+
+  // Set a 5-second timeout — if API hasn't responded, show fallback
+  const timeout = setTimeout(showFallback, 5000);
+
   try {
     const res = await fetch(
       "https://api.github.com/users/adlakhapriya95/repos?per_page=50&sort=updated",
       { headers: { Accept: "application/vnd.github.mercy-preview+json" } }
     );
-    if (!res.ok) throw new Error("API error");
+
+    if (!res.ok) {
+      clearTimeout(timeout);
+      showFallback();
+      return;
+    }
+
     const repos = await res.json();
+    clearTimeout(timeout);
 
     const filtered = repos.filter(r => !SKIP_REPOS.includes(r.name) && !r.fork);
 
-    // New repos float to the top
     const newRepos = filtered
       .filter(r => !CURATED_ORDER.includes(r.name))
       .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
@@ -613,21 +675,22 @@ async function loadProjects() {
 
     const sorted = [...newRepos, ...curatedRepos];
 
-    const allReadmeTags = await Promise.all(
-      sorted.map(repo => fetchReadmeTags(repo.name))
-    );
+    // Use hardcoded description as fallback if GitHub description is empty
+    sorted.forEach(r => {
+      if (!r.description && REPO_DESCRIPTIONS[r.name]) {
+        r.description = REPO_DESCRIPTIONS[r.name];
+      }
+    });
 
+    // Skip README fetches to avoid hitting rate limit (11 extra calls)
+    // Tags come from REPO_TAG_OVERRIDES instead
     container.innerHTML = sorted.length
-      ? `<div class="projects-grid">${sorted.map((r, i) => buildCard(r, allReadmeTags[i])).join("")}</div>`
+      ? `<div class="projects-grid">${sorted.map(r => buildCard(r, [])).join("")}</div>`
       : `<p style="text-align:center;color:#718096;">No public repositories found.</p>`;
 
   } catch (e) {
-    const fallback = CURATED_ORDER.map(name => ({
-      name,
-      html_url: `https://github.com/adlakhapriya95/${name}`,
-      description: null, language: null, fork: false, topics: []
-    }));
-    container.innerHTML = `<div class="projects-grid">${fallback.map(r => buildCard(r, [])).join("")}</div>`;
+    clearTimeout(timeout);
+    showFallback();
   }
 }
 
